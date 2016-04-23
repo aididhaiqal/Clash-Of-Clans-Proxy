@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Blake2Sharp;
 using System.IO;
+using Ionic.Zlib;
 
 namespace ClashOfClansProxy
 {
@@ -153,6 +154,23 @@ namespace ClashOfClansProxy
                     Console.WriteLine("ClientVersion                -> " + reader.ReadString());
                 }
             }
+            else if (packetID == 14102)
+            {
+                _10101_Nonce.Increment();
+                decryptedPayload = CustomNaCl.OpenSecretBox(new byte[16].Concat(encryptedPayload).ToArray(), _10101_Nonce, _20103_20104_SharedKey);
+                using (var reader = new PacketReader(new MemoryStream(decryptedPayload)))
+                {
+                    Logger.Log("Packet 14102 Content ->", LogType.PACKET);
+                    Console.WriteLine("Subtick                      -> " + reader.ReadUInt32WithEndian());
+                    Console.WriteLine("Checksum                     -> " + reader.ReadUInt32WithEndian());
+                    var commandammound = reader.ReadUInt32WithEndian();
+                    Console.WriteLine("Command Ammount              -> " + commandammound);
+                    if (commandammound > 0 && commandammound < 20)
+                    {
+                     Console.WriteLine("NestedCommands              -> " +  Encoding.UTF8.GetString(reader.ReadBytes()));
+                    }
+                }
+            }
             else if (packetID == 20103 || packetID == 20104)
             {
                 // The decrypted LoginFailed / LoginOk (20103/20104) requires a nonce being calculated by the nonce from 10101, the custom PK & the original PK                   
@@ -195,6 +213,77 @@ namespace ClashOfClansProxy
                     Console.WriteLine("Last Visit                    -> " + reader.ReadInt32());
                     Console.WriteLine("Unknown 1                     -> " + reader.ReadInt32());
                     Console.WriteLine("TimeStamp                     -> " + DateTimeConverter.FromUnixTimestamp(reader.ReadInt32()));
+                    Console.WriteLine("Unknown 2                     -> " + reader.ReadInt32());
+                    Console.WriteLine("User ID                       -> " + reader.ReadInt64());
+                    Console.WriteLine("Shield Duration               -> " + TimeSpan.FromSeconds(reader.ReadInt32()));
+                    Console.WriteLine("Unknown 3                     -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 4                     -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 5                     -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 6                     -> " + reader.ReadInt32());
+                    Console.WriteLine("Compressed                    -> " + reader.ReadBoolean());
+                    var homeData = reader.ReadBytes();
+                    using (var br = new BinaryReader(new MemoryStream(homeData))) // little endian
+                    {
+                        var decompressedLength = br.ReadInt32();
+                        var compressedHome = br.ReadBytes(homeData.Length - 4); // -4 to remove the decompressedLength bytes read
+                        Console.WriteLine("Compressed Home             -> " + Encoding.UTF8.GetString(compressedHome));
+                        Console.WriteLine("Compressed Home Lenght      -> " + compressedHome.Length);
+                        var homeJson = ZlibStream.UncompressString(compressedHome);
+                        Console.WriteLine("Decompresssed Lenght        -> " + decompressedLength);
+                        Console.WriteLine("Decompressed Home           -> " + homeJson);
+
+                    }
+                    Console.WriteLine("Unknown 7                     -> " + reader.ReadInt32());
+                    Console.WriteLine("User ID                       -> " + reader.ReadInt64());
+                    Console.WriteLine("User ID 2                     -> " + reader.ReadInt64());
+                    var haveclan = reader.ReadBoolean();
+                    Console.WriteLine("Have Clan                     -> " + haveclan);
+                    if (haveclan)
+                    {
+                        Console.WriteLine("Clan ID                       -> " + reader.ReadInt64());
+                        Console.WriteLine("Clan Name                     -> " + reader.ReadString());
+                        Console.WriteLine("Clan Badge                    -> " + reader.ReadInt32());
+                        Console.WriteLine("Clan Role                     -> " + reader.ReadInt32());
+                        Console.WriteLine("Clan Level                    -> " + reader.ReadInt32());
+                        Console.WriteLine("Unknown 8                     -> " + reader.ReadBoolean());
+                    }
+                    Console.WriteLine("Unknown 9                     -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 10                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 11                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 12                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 13                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 14                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 15                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 16                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 17                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 18                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 19                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 20                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 21                    -> " + reader.ReadInt32());
+                    Console.WriteLine("League ID                     -> " + reader.ReadInt32());
+                    Console.WriteLine("Alliance Castle Level         -> " + reader.ReadInt32());
+                    Console.WriteLine("Alliance Castle Total Capacity-> " + reader.ReadInt32());
+                    Console.WriteLine("Alliance Castle Used Capacity -> " + reader.ReadInt32());
+                    Console.WriteLine("Town Hall Level               -> " + reader.ReadInt32());
+                    Console.WriteLine("Name                          -> " + reader.ReadString());
+                    Console.WriteLine("Facebook ID                   -> " + reader.ReadInt32());
+                    Console.WriteLine("Level                         -> " + reader.ReadInt32());
+                    Console.WriteLine("Experience                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Gems                          -> " + reader.ReadInt32());
+                    Console.WriteLine("FreeGems                      -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 22                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 23                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Trophies                      -> " + reader.ReadInt32());
+                    Console.WriteLine("Attack Won                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Attack Lost                   -> " + reader.ReadInt32());
+                    Console.WriteLine("Defences Won                  -> " + reader.ReadInt32());
+                    Console.WriteLine("Defences Lost                 -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 24                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 25                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 26                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 27                    -> " + reader.ReadByte());
+                    Console.WriteLine("Unknown 28                    -> " + reader.ReadInt64());
+                    Console.WriteLine("Name Set                      -> " + reader.ReadBoolean());
                 }
             }
             else

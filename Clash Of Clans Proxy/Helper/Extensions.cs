@@ -168,5 +168,58 @@ namespace ClashOfClansProxy
                 Array.Reverse(a64);
             return BitConverter.ToUInt64(a64, 0);
         }
-    }
+        public static int ReadInt32WithEndian(this BinaryReader br)
+        {
+            var a32 = br.ReadBytes(4);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(a32);
+            return BitConverter.ToInt32(a32, 0);
+        }
+
+        public static long ReadInt64WithEndian(this BinaryReader br)
+        {
+            var a64 = br.ReadBytes(8);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(a64);
+            return BitConverter.ToInt64(a64, 0);
+        }
+
+        public static string ReadScString(this BinaryReader br)
+        {
+            var stringLength = br.ReadInt32WithEndian();
+            string result;
+
+            if (stringLength > -1)
+            {
+                if (stringLength > 0)
+                {
+                    var astr = br.ReadBytes(stringLength);
+                    result = Encoding.UTF8.GetString(astr);
+                }
+                else
+                {
+                    result = string.Empty;
+                }
+            }
+            else
+                result = null;
+            return result;
+        }
+
+        public static ushort ReadUInt16WithEndian(this BinaryReader br)
+        {
+            var a16 = br.ReadBytes(2);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(a16);
+            return BitConverter.ToUInt16(a16, 0);
+        }
+
+        public static uint ReadUInt32WithEndian(this BinaryReader br)
+        {
+            var a32 = br.ReadBytes(4);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(a32);
+            return BitConverter.ToUInt32(a32, 0);
+        }
+        }
 }

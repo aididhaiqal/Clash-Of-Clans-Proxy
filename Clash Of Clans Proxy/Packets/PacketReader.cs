@@ -187,6 +187,15 @@ namespace ClashOfClansProxy
         {
             return BaseStream.Seek(offset, origin);
         }
+        public byte[] ReadBytes()
+        {
+
+            var length = ReadInt32();
+            if (length == -1)
+                return null;
+
+            return ReadBytes(length);
+        }
 
         private byte[] ReadBytesWithEndian(int count, bool switchEndian = true)
         {
