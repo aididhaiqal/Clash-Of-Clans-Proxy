@@ -1,36 +1,37 @@
-## Clash Royale Proxy
+## Clash Of Clans Proxy
 
-A proxy en/decrypting Clash Royale traffic.
+A proxy en/decrypting Clash Of Clans traffic.
 
 
 ## Motivation
 
-Motivated by *clugh*, *Ultrapowa* & *FICTURE7*
+Motivated by *clugh*, *Ultrapowa* & *FICTURE7* & *InfinityModding*
 
 ## Contact
-http://infinitymodding.net
+Soon
 
-![alt text](https://cdn3.iconfinder.com/data/icons/free-social-icons/67/skype_circle_color-48.png "Contact me on skype") : julianzzxd
+![alt text](https://cdn3.iconfinder.com/data/icons/free-social-icons/67/skype_circle_color-48.png "Contact me on skype") : aidid.haiqal
 ## Installation
 
-Open ClashRoyaleProxy.sln with your preferred C# IDE, compile it, make sure all NuGet packages are installed.
-Download [this](http://www.file-upload.net/download-11469803/modded_clash_royale.apk.html) APK file and install it on your rooted android device.
+Open Clash Of Clans Proxy.sln with your preferred C# IDE, compile it, make sure all NuGet packages are installed.
+Download [this](Soonl) APK file and install it on your rooted android device.
 Connect to the official servers first, this step is required in order to get the latest patch files.
 Run & connect to the proxy.
 
 ## Proof of Concept
 
-![alt tag](http://i.imgur.com/plTAldN.png)
-![alt tag](http://i.imgur.com/fnrGl7j.png)
+![alt tag](http://i.imgur.com/9xV8Nxs.png)
+![alt tag](http://i.imgur.com/0JEnSnv.png)
 
 ## Contributors
 
-* expl0itr
+* expl0itr (Main Source)
 * BerkanYildiz
+* Aidid Haiqal 
 
 ## License
 
-Copyright (c) 2016 expl0itr
+Copyright (c) 2016 Aidid Haiqal
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
