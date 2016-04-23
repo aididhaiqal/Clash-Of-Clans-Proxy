@@ -1,6 +1,6 @@
 ﻿using System.Net.Sockets;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     public class State
     {

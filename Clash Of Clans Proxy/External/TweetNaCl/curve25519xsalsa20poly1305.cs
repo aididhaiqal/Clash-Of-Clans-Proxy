@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
 
 	public class curve25519xsalsa20poly1305

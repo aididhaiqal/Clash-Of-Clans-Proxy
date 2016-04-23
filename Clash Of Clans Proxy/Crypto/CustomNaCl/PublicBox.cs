@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     public class PublicBox
     {

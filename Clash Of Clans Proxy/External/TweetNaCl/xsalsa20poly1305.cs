@@ -1,4 +1,4 @@
-﻿namespace ClashRoyaleProxy
+﻿namespace ClashOfClansProxy
 {
 
 	public class xsalsa20poly1305

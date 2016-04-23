@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     class PacketType
     {
@@ -21,9 +21,10 @@ namespace ClashRoyaleProxy
             {10118, "AccountSwitched"},
             {10117, "ReportUser"},
             {10200, "CreateAvatar"},
+            {10212, "ChangeAvatarName"},
             {10201, "SelectAvatar"},
             {10502, "AddFriend"},
-            {14101, "AttackResult"},
+            {14101, "GoHome"},
             {14113, "VisitHome"},
             {14114, "HomeBattleReplay"},
             {14134, "AttackNpc"},

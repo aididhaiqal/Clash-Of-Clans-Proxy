@@ -1,4 +1,4 @@
-﻿namespace ClashRoyaleProxy.UI
+﻿namespace ClashOfClansProxy.UI
 {
     partial class Loader
     {

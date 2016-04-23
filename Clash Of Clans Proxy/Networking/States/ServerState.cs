@@ -1,4 +1,4 @@
-﻿namespace ClashRoyaleProxy
+﻿namespace ClashOfClansProxy
 {
     public class ServerState : State
     {

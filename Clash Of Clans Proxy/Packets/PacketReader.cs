@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     /// <summary>
     ///     Implements methods to read Clash of Clans packets.

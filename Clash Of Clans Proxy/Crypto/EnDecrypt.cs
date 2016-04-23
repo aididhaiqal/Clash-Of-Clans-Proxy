@@ -4,7 +4,7 @@ using System.Text;
 using Blake2Sharp;
 using System.IO;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     class EnDecrypt
     {
@@ -184,6 +184,18 @@ namespace ClashRoyaleProxy
                         Console.WriteLine("Error Code                    -> " + reader.ReadInt32());
                         Console.WriteLine("FingerPrint Data              -> " + reader.ReadString());
                     }
+            }
+            else if (packetID == 24101)
+            {
+                _20103_20104_Nonce.Increment();
+                decryptedPayload = CustomNaCl.OpenSecretBox(new byte[16].Concat(encryptedPayload).ToArray(), _20103_20104_Nonce, _20103_20104_SharedKey);
+                using (var reader = new PacketReader(new MemoryStream(decryptedPayload)))
+                {
+                    Logger.Log("Packet 24101 Content ->", LogType.PACKET);
+                    Console.WriteLine("Last Visit                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown 1                     -> " + reader.ReadInt32());
+                    Console.WriteLine("TimeStamp                     -> " + DateTimeConverter.FromUnixTimestamp(reader.ReadInt32()));
+                }
             }
             else
             {

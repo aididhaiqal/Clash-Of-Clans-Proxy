@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     /// <summary>
     /// Custom written NaCl version

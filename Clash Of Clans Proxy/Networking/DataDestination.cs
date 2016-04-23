@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     /// <summary>
     /// Specifies if a packet is client or server sided

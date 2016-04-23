@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ClashRoyaleProxy.UI
+namespace ClashOfClansProxy.UI
 {
     public partial class Loader : Form
     {

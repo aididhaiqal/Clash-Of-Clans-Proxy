@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     class Client
     {

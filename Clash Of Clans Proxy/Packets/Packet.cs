@@ -5,7 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     class Packet
     {

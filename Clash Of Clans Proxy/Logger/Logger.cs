@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     class Logger
     {

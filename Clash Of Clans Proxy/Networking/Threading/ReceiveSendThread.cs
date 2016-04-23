@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 
-namespace ClashRoyaleProxy
+namespace ClashOfClansProxy
 {
     class ReceiveSendThread : IDisposable
     {
