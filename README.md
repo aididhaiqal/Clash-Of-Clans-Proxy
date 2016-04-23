@@ -8,26 +8,26 @@ A proxy en/decrypting Clash Of Clans traffic.
 Motivated by *clugh*, *Ultrapowa* & *FICTURE7* & *InfinityModding*
 
 ## Contact
-http://infinitymodding.net
+Soon
 
 ![alt text](https://cdn3.iconfinder.com/data/icons/free-social-icons/67/skype_circle_color-48.png "Contact me on skype") : aidid.haiqal
 ## Installation
 
 Open Clash Of Clans Proxy.sln with your preferred C# IDE, compile it, make sure all NuGet packages are installed.
-Download [this](http://www.file-upload.net/download-11469803/modded_clash_royale.apk.html) APK file and install it on your rooted android device.
+Download [this](Soonl) APK file and install it on your rooted android device.
 Connect to the official servers first, this step is required in order to get the latest patch files.
 Run & connect to the proxy.
 
 ## Proof of Concept
 
-![alt tag](http://i.imgur.com/plTAldN.png)
-![alt tag](http://i.imgur.com/fnrGl7j.png)
+![alt tag](http://i.imgur.com/9xV8Nxs.png)
+![alt tag](http://i.imgur.com/0JEnSnv.png)
 
 ## Contributors
 
-* expl0itr
+* expl0itr (Main Source)
 * BerkanYildiz
-* Aidid Haiqal
+* Aidid Haiqal 
 
 ## License
 
