@@ -123,6 +123,7 @@
     <Compile Include="Networking\States\State.cs" />
     <Compile Include="Networking\Threading\ReceiveSendThread.cs" />
     <Compile Include="Packets\Packet.cs" />
+    <Compile Include="Packets\PacketReader.cs" />
     <Compile Include="Packets\PacketType.cs" />
     <Compile Include="Networking\Proxy.cs" />
     <Compile Include="Program.cs" />

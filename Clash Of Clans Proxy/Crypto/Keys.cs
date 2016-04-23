@@ -28,14 +28,14 @@ namespace ClashRoyaleProxy
         }
 
         /// <summary>
-        /// The original, unmodified Clash Royale public key.
+        /// The original, unmodified Clash Of Clans public key.
         /// Offset 0x0039A01C [ARM / ANDROID]
         /// </summary>
         public static byte[] OriginalPublicKey
         {
             get
             {
-                return Helper.HexToByteArray("ba105f0d3a099414d154046f41d80cf122b49902eab03b78a912f3c66dba2c39");
+                return Helper.HexToByteArray("9b39b440ff6c13ad07b506fc55e37f69856895c3fd5ab35978cdf5e34eb37471");
 
             }
         }

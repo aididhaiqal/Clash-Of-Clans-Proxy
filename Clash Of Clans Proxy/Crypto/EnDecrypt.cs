@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Blake2Sharp;
+using System.IO;
 
 namespace ClashRoyaleProxy
 {
@@ -105,6 +106,7 @@ namespace ClashRoyaleProxy
             {
                 // Both Session (10100) and SessionOk (20100) packets are not encrypted
                 // Thus.. just return the encrypted payload
+                Logger.LogDecryptedPacket(packetID, encryptedPayload);
                 return encryptedPayload;
             }
             else if (packetID == 10101)
@@ -121,6 +123,35 @@ namespace ClashRoyaleProxy
                 _10101_SessionKey = decryptedPayload.Take(24).ToArray();
                 _10101_Nonce = decryptedPayload.Skip(24).Take(24).ToArray();
                 decryptedPayload = decryptedPayload.Skip(48).ToArray();
+                using (var reader = new PacketReader(new MemoryStream(decryptedPayload)))
+                {
+                    Logger.Log("Packet 10101 Content ->", LogType.PACKET);
+                    Console.WriteLine("User ID                      -> " + reader.ReadInt64());
+                    Console.WriteLine("User Token                   -> " + reader.ReadString());
+                    Console.WriteLine("Major Version                -> " + reader.ReadInt32());
+                    Console.WriteLine("Content Version              -> " + reader.ReadInt32());
+                    Console.WriteLine("Minor Version                -> " + reader.ReadInt32());
+                    Console.WriteLine("MasterHash                   -> " + reader.ReadString());
+                    Console.WriteLine("Unknown1                     -> " + reader.ReadString());
+                    Console.WriteLine("OpenUDID                     -> " + reader.ReadString());
+                    Console.WriteLine("MacAddress                   -> " + reader.ReadString());
+                    Console.WriteLine("DeviceModel                  -> " + reader.ReadString());
+                    Console.WriteLine("LocaleKey                    -> " + reader.ReadInt32());
+                    Console.WriteLine("Language                     -> " + reader.ReadString());
+                    Console.WriteLine("AdvertisingGUID              -> " + reader.ReadString());
+                    Console.WriteLine("OSVersion                    -> " + reader.ReadString());
+                    Console.WriteLine("Unknown2                     -> " + reader.ReadByte());
+                    Console.WriteLine("Unknown3                     -> " + reader.ReadString());
+                    Console.WriteLine("AndroidDeviceID              -> " + reader.ReadString());
+                    Console.WriteLine("FacebookDistributionID       -> " + reader.ReadString());
+                    Console.WriteLine("IsAdvertisingTrackingEnabled -> " + reader.ReadBoolean());
+                    Console.WriteLine("VendorGUID                   -> " + reader.ReadString());
+                    Console.WriteLine("Seed                         -> " + reader.ReadInt32());
+                    Console.WriteLine("Unknown4                     -> " + reader.ReadByte());
+                    Console.WriteLine("Unknown5                     -> " + reader.ReadString());
+                    Console.WriteLine("Unknown6                     -> " + reader.ReadString());
+                    Console.WriteLine("ClientVersion                -> " + reader.ReadString());
+                }
             }
             else if (packetID == 20103 || packetID == 20104)
             {
@@ -136,6 +167,23 @@ namespace ClashRoyaleProxy
                 _20103_20104_Nonce = decryptedPayload.Take(24).ToArray();
                 _20103_20104_SharedKey = decryptedPayload.Skip(24).Take(32).ToArray();
                 decryptedPayload = decryptedPayload.Skip(56).ToArray();
+                if (packetID == 20104)
+                    using (var reader = new PacketReader(new MemoryStream(decryptedPayload)))
+                    {
+                        Logger.Log("Packet 20104 Content ->", LogType.PACKET);
+                        Console.WriteLine("User ID 1                     -> " + reader.ReadInt64());
+                        Console.WriteLine("User ID 2                     -> " + reader.ReadInt64());
+                        Console.WriteLine("PassToken                     -> " + reader.ReadString());
+                        Console.WriteLine("Facebook ID                   -> " + reader.ReadString());
+                        Console.WriteLine("GameCenter ID                 -> " + reader.ReadString());
+                    }
+                else
+                    using (var reader = new PacketReader(new MemoryStream(decryptedPayload)))
+                    {
+                        Logger.Log("Packet 20103 Content ->", LogType.PACKET);
+                        Console.WriteLine("Error Code                    -> " + reader.ReadInt32());
+                        Console.WriteLine("FingerPrint Data              -> " + reader.ReadString());
+                    }
             }
             else
             {
@@ -150,6 +198,7 @@ namespace ClashRoyaleProxy
                     decryptedPayload = CustomNaCl.OpenSecretBox(new byte[16].Concat(encryptedPayload).ToArray(), _20103_20104_Nonce, _20103_20104_SharedKey);
                 }
             }
+            Logger.LogDecryptedPacket(packetID, decryptedPayload);
             return decryptedPayload;
         }
     }

@@ -12,7 +12,41 @@ namespace ClashRoyaleProxy
     {
         private static Dictionary<int, string> KnownPackets = new Dictionary<int, string>()
         {
-            /* ALL PACKET TYPES! */
+            {10100, "SessionRequest"},
+            {10101, "Login"},
+            {10108, "KeepAlive"},
+            {14715, "SendGlobalChatLine"},
+            {10103, "CreateAccount"},
+            {10116, "ResetAccount"},
+            {10118, "AccountSwitched"},
+            {10117, "ReportUser"},
+            {10200, "CreateAvatar"},
+            {10201, "SelectAvatar"},
+            {10502, "AddFriend"},
+            {14101, "AttackResult"},
+            {14113, "VisitHome"},
+            {14114, "HomeBattleReplay"},
+            {14134, "AttackNpc"},
+            {14201, "BindFacebookAccount"},
+            {14211, "UnbindFacebookAccount"},
+            {14123, "AttackMatchedHome"},
+            {24715, "GlobalChatLine"},
+            {24101, "OwnHomeData"},
+            {14102, "EndClientTurn"},
+            {20100, "SessionSuccess"},
+            {20104, "LoginOK"},
+            {20103, "LoginFailed"},
+            {24103, "AllianceData"},
+            {24133, "NpcData"},
+            {24115, "ServerError"},
+            {24113, "VisitedHomeData"},
+            {24104, "OutOfSync"},
+            {24310, "AllianceList"},
+            {24311, "AllianceStream"},
+            {20108, "ServerKeepAlive"},
+            {24411, "AvatarStream"},
+            {24340, "BookmarksList"}
+            /*
             { 10100, "ClientHello" },
             { 10101, "Login" },
             { 10107, "ClientCapabilities" },
@@ -162,6 +196,7 @@ namespace ClashRoyaleProxy
             { 26005, "LogicDeviceLinkResponse" },
             { 26007, "LogicDeviceLinkDone" },
             { 26008, "LogicDeviceLinkError" },
+            */
         };
 
         /// <summary>

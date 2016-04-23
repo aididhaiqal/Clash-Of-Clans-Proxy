@@ -15,7 +15,7 @@ namespace ClashRoyaleProxy
             Console.Write("[" + type + "] ");
             Console.ResetColor();
             Console.WriteLine(text);
-            //LogToFile(text, type);
+            LogToFile(text, type);
         }
 
         /// <summary>
@@ -23,11 +23,21 @@ namespace ClashRoyaleProxy
         /// </summary>
         public static void LogPacket(Packet p)
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("[PACKET " + p.ID + "] ");
             Console.ResetColor();
             Console.WriteLine(p.Type);
-            //LogToFile("Packet " + p.ID + " : " + p.DecryptedPayload, type);
+            //LogToFile("Packet " + p.ID + " : " + p.DecryptedPayload, );
+        }
+
+        public static void LogDecryptedPacket(int id , byte[] payload)
+        {
+            var type = PacketType.GetPacketTypeByID(id);
+            if (!Directory.Exists("Packets/" + " - " + id.ToString() + type))
+                Directory.CreateDirectory("Packets/" + id +  " - " + type);
+            File.WriteAllBytes("Packets/" + id + " - " + type + "/bytes.txt", payload);
+            string contents = BitConverter.ToString(payload).Replace("-", string.Empty);
+            File.WriteAllText("Packets/" + id + " - " +  type + "/hexa.txt", contents);
         }
 
         /// <summary>

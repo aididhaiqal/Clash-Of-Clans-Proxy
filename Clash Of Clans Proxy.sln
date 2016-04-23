@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClashRoyaleProxy", "ClashRoyaleProxy\ClashRoyaleProxy.csproj", "{68E0C6B9-9029-4017-9292-AA02642593A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clash Of Clans Proxy", "Clash Of Clans Proxy\Clash Of Clans Proxy.csproj", "{68E0C6B9-9029-4017-9292-AA02642593A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
